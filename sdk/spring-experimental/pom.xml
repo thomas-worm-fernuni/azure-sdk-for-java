@@ -60,5 +60,13 @@
         <module>spring-cloud-azure-native-configuration</module>
       </modules>
     </profile>
+
+    <profile>
+      <id>jdbc</id>
+      <modules>
+        <module>credential-free-jdbc</module>
+        <module>spring-cloud-azure-starter-jdbc</module>
+      </modules>
+    </profile>
   </profiles>
 </project>
