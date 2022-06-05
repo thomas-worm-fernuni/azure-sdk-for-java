@@ -91,7 +91,7 @@ public class AzureJdbcEnvironmentPostProcessor implements EnvironmentPostProcess
                 Map<String, Object> propertyMap = new HashMap<>();
                 propertyMap.put("spring.datasource.url", enhancedUrl);
 
-                environment.getPropertySources().addFirst(new MapPropertySource("AZURE_SQL_FOR_DATABASE", propertyMap));
+                environment.getPropertySources().addFirst(new MapPropertySource("AZURE_DATABASE", propertyMap));
             }
         } catch (IllegalStateException e) {
             logger.debug("Inconsistent properties detected, skip AzureJdbcEnvironmentPostProcessor");
