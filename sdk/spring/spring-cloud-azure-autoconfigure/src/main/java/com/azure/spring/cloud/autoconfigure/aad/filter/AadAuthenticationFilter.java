@@ -7,8 +7,6 @@ import static com.azure.spring.cloud.autoconfigure.aad.implementation.constants.
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.http.HttpHeaders;
-import java.nio.file.attribute.UserPrincipal;
 import java.text.ParseException;
 import java.util.Optional;
 
@@ -19,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
