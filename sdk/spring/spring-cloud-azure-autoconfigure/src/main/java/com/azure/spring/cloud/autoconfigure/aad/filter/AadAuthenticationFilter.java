@@ -3,38 +3,25 @@
 
 package com.azure.spring.cloud.autoconfigure.aad.filter;
 
-import com.azure.spring.cloud.autoconfigure.aad.implementation.constants.AadJwtClaimNames;
-import com.azure.spring.cloud.autoconfigure.aad.implementation.graph.AadGraphClient;
-import com.azure.spring.cloud.autoconfigure.aad.properties.AadAuthenticationProperties;
-import com.azure.spring.cloud.autoconfigure.aad.properties.AadAuthorizationServerEndpoints;
-import com.microsoft.aad.msal4j.MsalServiceException;
-import com.nimbusds.jose.JOSEException;
-import com.nimbusds.jose.jwk.source.JWKSetCache;
-import com.nimbusds.jose.proc.BadJOSEException;
-import com.nimbusds.jose.util.ResourceRetriever;
-import com.nimbusds.jwt.proc.BadJWTException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
-import org.springframework.web.filter.OncePerRequestFilter;
+import java.io.IOException;
+import java.util.Optional;
 
-import javax.naming.ServiceUnavailableException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.text.ParseException;
-import java.util.Optional;
 
-import static com.azure.spring.cloud.autoconfigure.aad.implementation.constants.Constants.BEARER_PREFIX;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.azure.spring.cloud.autoconfigure.aad.implementation.graph.AadGraphClient;
+import com.azure.spring.cloud.autoconfigure.aad.properties.AadAuthenticationProperties;
+import com.azure.spring.cloud.autoconfigure.aad.properties.AadAuthorizationServerEndpoints;
+import com.nimbusds.jose.jwk.source.JWKSetCache;
+import com.nimbusds.jose.util.ResourceRetriever;
 
 /**
  * A stateful authentication filter which uses Microsoft Graph groups to authorize. Both ID token and access token are
@@ -136,7 +123,7 @@ public class AadAuthenticationFilter extends OncePerRequestFilter {
                                               .orElse(null);
         if (aadIssuedBearerToken == null || alreadyAuthenticated()) {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
-            return;
+            return;-vers
         }
         try {
             HttpSession httpSession = httpServletRequest.getSession();
