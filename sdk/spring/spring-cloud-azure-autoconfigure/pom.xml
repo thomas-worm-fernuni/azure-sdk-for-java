@@ -304,6 +304,13 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webflux</artifactId>
+      <version>5.3.12</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- for the samples   -->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
